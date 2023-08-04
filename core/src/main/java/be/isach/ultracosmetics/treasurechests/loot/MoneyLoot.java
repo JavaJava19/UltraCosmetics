@@ -26,13 +26,12 @@ public class MoneyLoot implements Loot {
 
         UltraCosmeticsData.get().getPlugin().getEconomyHandler().getHook().deposit(player.getBukkitPlayer(), money);
         // Spawn a firework if the player got more than 3/4 of the money they could have.
-        boolean firework = money > 3 * SettingsManager.getConfig().getInt("TreasureChests.Loots.Money.Max") / 4;
         boolean toOthers = SettingsManager.getConfig().getBoolean("TreasureChests.Loots.Money.Message.enabled");
         TagResolver.Single moneyPlaceholder = Placeholder.unparsed("money", String.valueOf(money));
         String[] name = MessageManager.getLegacyMessage("Treasure-Chests-Loot.Money", moneyPlaceholder).split("\n");
         Component msg = MessageManager.getMessage("Treasure-Chests-Loot-Messages.Money", moneyPlaceholder,
                 Placeholder.unparsed("name", player.getBukkitPlayer().getName())
         );
-        return new LootReward(name, XMaterial.SUNFLOWER.parseItem(), msg, toOthers, firework);
+        return new LootReward(name, XMaterial.SUNFLOWER.parseItem(), msg, toOthers, false);
     }
 }
