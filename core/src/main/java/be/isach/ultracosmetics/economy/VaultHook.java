@@ -30,6 +30,10 @@ public class VaultHook implements EconomyHook {
 
     @Override
     public void withdraw(Player player, int amount, Runnable onSuccess, Runnable onFailure) {
+        if (economy.getBalance(player) < amount) {
+            onFailure.run();
+            return;
+        }
         EconomyResponse response = economy.withdrawPlayer(player, amount);
         if (response.type == ResponseType.SUCCESS) {
             onSuccess.run();
