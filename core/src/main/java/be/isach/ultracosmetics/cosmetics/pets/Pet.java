@@ -220,12 +220,7 @@ public abstract class Pet extends EntityCosmetic<PetType, Mob> implements Updata
         armorStand.setCustomNameVisible(true);
         FixedMetadataValue metadataValue = new FixedMetadataValue(getUltraCosmetics(), "C_AD_ArmorStand");
         armorStand.setMetadata("C_AD_ArmorStand", metadataValue);
-        setPassenger(entity, armorStand);
-    }
-
-    @SuppressWarnings("deprecation")
-    private void setPassenger(Entity entity, Entity passenger) {
-        entity.setPassenger(passenger);
+        entity.addPassenger(armorStand);
     }
 
     public void updateName() {
